@@ -1,7 +1,7 @@
 # Este repositório contém um workflow/schema para Easypanel.
 exportado do n8n, com todas as dependências, necessárias, em modo Fila e MCP ativo.
 
-## Como isntalar:
+## Como instalar:
 Copie o Schema que deixamos, abra no seu Programa de edição como cursor, Visual Studio code etc...
 
 Edite o codigo mudando suas credênciais, do postgres e do Redis, caso não tenha essas dependências instaladas no seu Easypanel, instalar antes, para proseguir com o n8n.
