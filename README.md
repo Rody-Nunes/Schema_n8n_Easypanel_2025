@@ -27,13 +27,14 @@ Senha_Postgres_AQUI: senha do usuário Postgres
 SUA_CHAVE_ENCRYPTION_AQUI: chave de criptografia n8n (pode gerar com comando ou usar senha segura)
 
 ## Depois que preencher com suas credeciais, Siga o tutorial abaixo.
-Clique em Personalizado: 
+
+## Clique em Personalizado: 
 <img width="1006" height="544" alt="image" src="https://github.com/user-attachments/assets/9593fb8e-916f-4270-8b49-ec98a12049b0" />
 
 ## Criar apartir de esquema:
 <img width="997" height="469" alt="image" src="https://github.com/user-attachments/assets/5026d740-3e98-45d9-990c-784936e32fe3" />
 
-Cola seu schema editado, e clique em criar, é só esperar o n8n subir as dependências e tudo estará funcional.
+## Cola seu schema editado, e clique em criar, é só esperar o n8n subir as dependências e tudo estará funcional.
 <img width="547" height="486" alt="image" src="https://github.com/user-attachments/assets/392e2376-c77d-4d1a-ae5b-60b44ec6353f" />
 
 
