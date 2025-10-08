@@ -21,7 +21,7 @@ No Easypanel, crie um novo serviço PostgreSQL
 Após criar, acesse o terminal do Postgres e crie um banco de dados:
 
 ```
-sql   CREATE DATABASE n8n_db;
+CREATE DATABASE n8n_db;
 ```
 
 Anote os seguintes dados:
