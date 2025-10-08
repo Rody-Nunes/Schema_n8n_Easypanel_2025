@@ -4,7 +4,7 @@
       "type": "app",
       "data": {
         "projectName": "labz_flow",
-        "serviceName": "n8n_flow_mais",
+        "serviceName": "n8n_flow_main",
         "source": {
           "type": "image",
           "image": "n8nio/n8n:latest"
