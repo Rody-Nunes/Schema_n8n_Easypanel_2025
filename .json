@@ -3,8 +3,8 @@
     {
       "type": "app",
       "data": {
-        "projectName": "labz_flow",
-        "serviceName": "n8n_flow_main",
+        "projectName": "NOME_DO_PROJETO_AQUI",
+        "serviceName": "n8n_main",
         "source": {
           "type": "image",
           "image": "n8nio/n8n:latest"
@@ -15,11 +15,11 @@
             "port": 5678
           }
         ],
-        "env": "WEBHOOK_URL=https://$(PRIMARY_DOMAIN)\nEXECUTIONS_MODE=queue\nQUEUE_BULL_REDIS_HOST=Nome_do_servico_Redis_AQUI\nQUEUE_BULL_REDIS_PORT=Porta_do_Redis_AQUI\nQUEUE_BULL_REDIS_PASSWORD=Senha_Redis_AQUI\nDB_TYPE=postgresdb\nDB_POSTGRESDB_HOST=Nome_do_servico_Postgres_AQUI\nDB_POSTGRESDB_PORT=Porta_do_Postgres_AQUI\nDB_POSTGRESDB_DATABASE=Nome_do_Banco_AQUI\nDB_POSTGRESDB_USER=Usuario_Postgres_AQUI\nDB_POSTGRESDB_PASSWORD=Senha_Postgres_AQUI\nN8N_ENCRYPTION_KEY=SUA_CHAVE_ENCRYPTION_AQUI\nN8N_MCP_ENABLED=true\nN8N_METRICS=true\nN8N_RUNNERS_ENABLED=true\nOFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=true\nN8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true\nN8N_PROCESS=main\nQUEUE_HEALTH_CHECK_ACTIVE=true\nGENERIC_TIMEZONE=America/Sao_Paulo\nN8N_DEFAULT_LOCALE=pt-BR\nTZ=America/Sao_Paulo",
+        "env": "WEBHOOK_URL=https://$(PRIMARY_DOMAIN)\nN8N_HOST=0.0.0.0\nN8N_PORT=5678\nEXECUTIONS_MODE=queue\nN8N_PROCESS=main\nQUEUE_BULL_REDIS_HOST=NOME_DO_SERVICO_REDIS_AQUI\nQUEUE_BULL_REDIS_PORT=PORTA_DO_REDIS_AQUI\nQUEUE_BULL_REDIS_USERNAME=default\nQUEUE_BULL_REDIS_PASSWORD=SENHA_REDIS_AQUI\nQUEUE_BULL_REDIS_DB=0\nDB_TYPE=postgresdb\nDB_POSTGRESDB_HOST=NOME_DO_SERVICO_POSTGRES_AQUI\nDB_POSTGRESDB_PORT=PORTA_DO_POSTGRES_AQUI\nDB_POSTGRESDB_DATABASE=NOME_DO_BANCO_AQUI\nDB_POSTGRESDB_USER=USUARIO_POSTGRES_AQUI\nDB_POSTGRESDB_PASSWORD=SENHA_POSTGRES_AQUI\nN8N_ENCRYPTION_KEY=SUA_CHAVE_ENCRYPTION_AQUI\nEXECUTIONS_DATA_SAVE_ON_ERROR=all\nEXECUTIONS_DATA_SAVE_ON_SUCCESS=all\nEXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=true\nOFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=true\nN8N_RUNNERS_ENABLED=true\nN8N_MCP_ENABLED=true\nN8N_METRICS=true\nQUEUE_HEALTH_CHECK_ACTIVE=true\nN8N_BLOCK_ENV_ACCESS_IN_NODE=false\nN8N_GIT_NODE_DISABLE_BARE_REPOS=true\nN8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true\nGENERIC_TIMEZONE=America/Sao_Paulo\nN8N_DEFAULT_LOCALE=pt-BR\nTZ=America/Sao_Paulo",
         "mounts": [
           {
             "type": "volume",
-            "name": "n8n_data",
+            "name": "n8n_main_data",
             "mountPath": "/home/node/.n8n"
           }
         ]
@@ -28,17 +28,20 @@
     {
       "type": "app",
       "data": {
-        "projectName": "labz_flow",
-        "serviceName": "n8n_flow_work",
+        "projectName": "NOME_DO_PROJETO_AQUI",
+        "serviceName": "n8n_worker",
         "source": {
           "type": "image",
           "image": "n8nio/n8n:latest"
         },
-        "env": "EXECUTIONS_MODE=queue\nQUEUE_BULL_REDIS_HOST=Nome_do_servico_Redis_AQUI\nQUEUE_BULL_REDIS_PORT=Porta_do_Redis_AQUI\nQUEUE_BULL_REDIS_PASSWORD=Senha_Redis_AQUI\nDB_TYPE=postgresdb\nDB_POSTGRESDB_HOST=Nome_do_servico_Postgres_AQUI\nDB_POSTGRESDB_PORT=Porta_do_Postgres_AQUI\nDB_POSTGRESDB_DATABASE=Nome_do_Banco_AQUI\nDB_POSTGRESDB_USER=Usuario_Postgres_AQUI\nDB_POSTGRESDB_PASSWORD=Senha_Postgres_AQUI\nN8N_ENCRYPTION_KEY=SUA_CHAVE_ENCRYPTION_AQUI\nN8N_PROCESS=worker\nN8N_DISABLE_ACTIVE_WORKFLOWS=true\nN8N_SKIP_WEBHOOK_DEREGISTRATION_SHUTDOWN=true\nGENERIC_TIMEZONE=America/Sao_Paulo\nN8N_DEFAULT_LOCALE=pt-BR\nTZ=America/Sao_Paulo",
+        "deploy": {
+          "command": "/bin/sh -c 'n8n worker'"
+        },
+        "env": "EXECUTIONS_MODE=queue\nN8N_PROCESS=worker\nQUEUE_BULL_REDIS_HOST=NOME_DO_SERVICO_REDIS_AQUI\nQUEUE_BULL_REDIS_PORT=PORTA_DO_REDIS_AQUI\nQUEUE_BULL_REDIS_USERNAME=default\nQUEUE_BULL_REDIS_PASSWORD=SENHA_REDIS_AQUI\nQUEUE_BULL_REDIS_DB=0\nDB_TYPE=postgresdb\nDB_POSTGRESDB_HOST=NOME_DO_SERVICO_POSTGRES_AQUI\nDB_POSTGRESDB_PORT=PORTA_DO_POSTGRES_AQUI\nDB_POSTGRESDB_DATABASE=NOME_DO_BANCO_AQUI\nDB_POSTGRESDB_USER=USUARIO_POSTGRES_AQUI\nDB_POSTGRESDB_PASSWORD=SENHA_POSTGRES_AQUI\nN8N_ENCRYPTION_KEY=SUA_CHAVE_ENCRYPTION_AQUI\nN8N_DISABLE_ACTIVE_WORKFLOWS=true\nEXECUTIONS_DATA_SAVE_ON_ERROR=all\nEXECUTIONS_DATA_SAVE_ON_SUCCESS=all\nN8N_RUNNERS_ENABLED=true\nN8N_GRACEFUL_SHUTDOWN_TIMEOUT=60\nN8N_BLOCK_ENV_ACCESS_IN_NODE=false\nN8N_GIT_NODE_DISABLE_BARE_REPOS=true\nN8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true\nGENERIC_TIMEZONE=America/Sao_Paulo\nN8N_DEFAULT_LOCALE=pt-BR\nTZ=America/Sao_Paulo",
         "mounts": [
           {
             "type": "volume",
-            "name": "n8n_data",
+            "name": "n8n_worker_data",
             "mountPath": "/home/node/.n8n"
           }
         ]
