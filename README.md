@@ -163,41 +163,8 @@ TZ=America/Sao_Paulo
 <img width="529" height="366" alt="image" src="https://github.com/user-attachments/assets/ff6838b2-a480-41f2-b969-3314f9fe6352" />
 
 # Arqueterura do n8n atualizado: 
-┌──────────────────────────────────────────┐
-│           USUÁRIO (Browser)               │
-└─────────────┬────────────────────────────┘
-              │ HTTPS
-              ▼
-┌──────────────────────────────────────────┐
-│         N8N MAIN (Interface)              │
-│  • Gerencia workflows                     │
-│  • Enfileira execuções no Redis           │
-│  • Task Broker (comunicação interna)      │
-│  • MCP habilitado                         │
-└─────────────┬────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────────────────┐
-│          REDIS (Fila Bull)                │
-│  • Armazena jobs pendentes                │
-│  • Gerencia fila de execuções             │
-└─────────────┬────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────────────────┐
-│       N8N WORKER (Processador)            │
-│  • Processa 10 jobs simultâneos           │
-│  • Executa workflows                      │
-│  • Task Runners isolados                  │
-└─────────────┬────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────────────────┐
-│      POSTGRESQL (Banco de Dados)          │
-│  • Workflows e configurações              │
-│  • Histórico completo de execuções        │
-│  • Credenciais criptografadas            │
-└──────────────────────────────────────────┘
+<img width="526" height="928" alt="image" src="https://github.com/user-attachments/assets/a5281e27-e1bf-4a9a-b043-b6b57bdd19c2" />
+
 
 ------------------------------------------------------------------------------------
 ## Checklist antes de reportar problemas:
