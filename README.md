@@ -1,32 +1,62 @@
-# Este repositório contém um workflow/schema para Easypanel.
-exportado do n8n, com todas as dependências, necessárias, em modo Fila e MCP ativo.
+## Instalando Esquema Easypanel_n8n_interprise
 
-## Como instalar:
-Copie o Schema que deixamos, abra no seu Programa de edição como cursor, Visual Studio code etc...
+📋 Pré-requisitos
+Antes de começar, você precisará ter o Redis e o postgres isntalado em suas dependencias do Easypanel
 
-Edite o codigo mudando suas credênciais, do postgres e do Redis, caso não tenha essas dependências instaladas no seu Easypanel, instalar antes, para proseguir com o n8n.
+criar estes serviços no Easypanel:
 
-## Campos a preencher:
+1️⃣ Serviço Redis
 
-Nome_do_servico_Redis_AQUI: nome serviço Redis criado no Easypanel
+No Easypanel, crie um novo serviço Redis
+Configure uma senha forte
+Anote os seguintes dados:
 
-Porta_do_Redis_AQUI: porta Redis (geralmente 6379)
+Nome do serviço (ex: meu_redis)
+Porta (padrão: 6379)
+Senha definida
 
-Senha_Redis_AQUI: senha Redis definida no Easypanel
+2️⃣ Serviço PostgreSQL
 
-Nome_do_servico_Postgres_AQUI: nome serviço Postgres criado no Easypanel
+No Easypanel, crie um novo serviço PostgreSQL
+Após criar, acesse o terminal do Postgres e crie um banco de dados:
 
-Porta_do_Postgres_AQUI: porta Postgres (geralmente 5432)
+```
+sql   CREATE DATABASE n8n_db;
+```
 
-Nome_do_Banco_AQUI: nome do banco de dados criado
+Anote os seguintes dados:
 
-Usuario_Postgres_AQUI: usuário do banco Postgres
+Nome do serviço (ex: meu_postgres)
+Porta (padrão: 5432)
+Nome do banco criado (ex: n8n_db)
+Usuário (padrão: postgres)
+Senha definida
 
-Senha_Postgres_AQUI: senha do usuário Postgres
 
-SUA_CHAVE_ENCRYPTION_AQUI: chave de criptografia n8n (pode gerar com comando ou usar senha segura)
+3️⃣ Gerar Chave de Criptografia
+O N8N precisa de uma chave única de 32 caracter para criptografar dados sensíveis. Escolha uma opção:
+https://www.avast.com/random-password-generator#mac
 
-## Depois que preencher com suas credeciais, Siga o tutorial abaixo.
+## Editando o esquema, Abra o Esquema.json em um programa edit Dev, como Visual studio code , cursor entre outros....
+
+depois de aberto edite o que pedir, adicionando suas credênciais aonde pedir no esquema: 
+
+### Pontos para Preencher no Template
+
+Substitua os seguintes placeholders no arquivo JSON com suas informações:
+
+- NOME_DO_PROJETO_AQUI → Nome do seu projeto no Easypanel
+- NOME_DO_SERVICO_REDIS_AQUI → Nome do serviço Redis criado no Easypanel
+- PORTA_DO_REDIS_AQUI → Porta do Redis (geralmente 6379)
+- SENHA_REDIS_AQUI → Senha do Redis definida no Easypanel
+- NOME_DO_SERVICO_POSTGRES_AQUI → Nome do serviço Postgres criado no Easypanel
+- PORTA_DO_POSTGRES_AQUI → Porta do Postgres (geralmente 5432)
+- NOME_DO_BANCO_AQUI → Nome do banco de dados criado
+- USUARIO_POSTGRES_AQUI → Usuário do banco Postgres
+- SENHA_POSTGRES_AQUI → Senha do usuário Postgres
+- SUA_CHAVE_ENCRYPTION_AQUI → Chave de criptografia única (32+ caracteres)
+
+## Implementando no Easypainel: 
 
 ## Clique em Personalizado: 
 <img width="1006" height="544" alt="image" src="https://github.com/user-attachments/assets/9593fb8e-916f-4270-8b49-ec98a12049b0" />
@@ -131,4 +161,54 @@ TZ=America/Sao_Paulo
 ✅ Cron jobs no fuso correto
 
 <img width="529" height="366" alt="image" src="https://github.com/user-attachments/assets/ff6838b2-a480-41f2-b969-3314f9fe6352" />
+
+# Arqueterura do n8n atualizado: 
+┌──────────────────────────────────────────┐
+│           USUÁRIO (Browser)               │
+└─────────────┬────────────────────────────┘
+              │ HTTPS
+              ▼
+┌──────────────────────────────────────────┐
+│         N8N MAIN (Interface)              │
+│  • Gerencia workflows                     │
+│  • Enfileira execuções no Redis           │
+│  • Task Broker (comunicação interna)      │
+│  • MCP habilitado                         │
+└─────────────┬────────────────────────────┘
+              │
+              ▼
+┌──────────────────────────────────────────┐
+│          REDIS (Fila Bull)                │
+│  • Armazena jobs pendentes                │
+│  • Gerencia fila de execuções             │
+└─────────────┬────────────────────────────┘
+              │
+              ▼
+┌──────────────────────────────────────────┐
+│       N8N WORKER (Processador)            │
+│  • Processa 10 jobs simultâneos           │
+│  • Executa workflows                      │
+│  • Task Runners isolados                  │
+└─────────────┬────────────────────────────┘
+              │
+              ▼
+┌──────────────────────────────────────────┐
+│      POSTGRESQL (Banco de Dados)          │
+│  • Workflows e configurações              │
+│  • Histórico completo de execuções        │
+│  • Credenciais criptografadas            │
+└──────────────────────────────────────────┘
+
+------------------------------------------------------------------------------------
+## Checklist antes de reportar problemas:
+
+ Redis e Postgres estão com status verde no Easypanel?
+ Todos os placeholders foram substituídos no JSON?
+ N8N_ENCRYPTION_KEY é idêntica em Main e Worker?
+ Logs do Worker mostram "n8n worker is now ready"?
+ Testou executar um workflow simples?
+
+ # Use por sua conta e Risco, não oferecemos suporte. 
+- Temple Em uso e funcional.
+ 
 
