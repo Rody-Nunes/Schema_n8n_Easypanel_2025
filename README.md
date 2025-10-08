@@ -4,8 +4,9 @@ exportado do n8n, com todas as dependências, necessárias, em modo Fila e MCP a
 ## Como isntalar:
 Copie o Schema que deixamos, abra no seu Programa de edição como cursor, Visual Studio code etc...
 
-Edite o codigo mudando suas credênciais, do postgres e do Redis, caso não tenha essas dependências instaladas no seu Easypanel, instalar antes.
-Campos a preencher:
+Edite o codigo mudando suas credênciais, do postgres e do Redis, caso não tenha essas dependências instaladas no seu Easypanel, instalar antes, para proseguir com o n8n.
+
+## Campos a preencher:
 
 Nome_do_servico_Redis_AQUI: nome serviço Redis criado no Easypanel
 
@@ -25,7 +26,7 @@ Senha_Postgres_AQUI: senha do usuário Postgres
 
 SUA_CHAVE_ENCRYPTION_AQUI: chave de criptografia n8n (pode gerar com comando ou usar senha segura)
 
-## Depois que preeencher com suas credeciais, Siga o tutorial abaixo.
+## Depois que preencher com suas credeciais, Siga o tutorial abaixo.
 Clique em Personalizado: 
 <img width="1006" height="544" alt="image" src="https://github.com/user-attachments/assets/9593fb8e-916f-4270-8b49-ec98a12049b0" />
 
