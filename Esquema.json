@@ -7,7 +7,7 @@
         "serviceName": "n8n_main",
         "source": {
           "type": "image",
-          "image": "n8nio/n8n:latest"
+          "image": "n8nio/n8n:1.118.1"
         },
         "domains": [
           {
@@ -28,11 +28,11 @@
     {
       "type": "app",
       "data": {
-        "projectName": "NOME_DO_PROJETO_AQUI",
+        "projectName": "automation",
         "serviceName": "n8n_worker",
         "source": {
           "type": "image",
-          "image": "n8nio/n8n:latest"
+          "image": "n8nio/n8n:1.118.1"
         },
         "deploy": {
           "command": "/bin/sh -c 'n8n worker'"
